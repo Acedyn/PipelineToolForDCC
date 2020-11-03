@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="pipeline" label="Pipeline">
+    <memberTool name="windowQT"/>
+  </toolshelf>
+
+  <tool name="windowQT" label="QT Window" icon="OBJ_geo">
+    <script scriptType="python"><![CDATA[
+from ui import openWindow
+win = openWindow.OpenWindow()
+win.show()
+hou.session.win = win
+]]></script>
+  </tool>
+</shelfDocument>

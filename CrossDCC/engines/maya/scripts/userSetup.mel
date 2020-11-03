@@ -1,0 +1,8 @@
+python("print('Loading pipeline tools')");
+
+python("import maya.cmds as cmds");
+python("import sys"); 
+
+python("sys.path.append(r'D:/Simon/Mes Documents/PROJECT/2020/WS2020_PythonForDCC/CrossDCC')");
+
+python("print('Pipeline tools loaded')");
