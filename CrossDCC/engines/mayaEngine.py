@@ -1,5 +1,6 @@
 import maya.cmds as cmds
 import engine
+import subprocess
 
 class MayaEngine(engine.Engine):
     def open(self, path):
@@ -7,25 +8,16 @@ class MayaEngine(engine.Engine):
         print(path)
  
     def export(self, path, namespaceString, openFilePath):
-        path = "\"" + path
+        if openFilePath == "" :
+            openFilePath = cmds.file(q=True, sn=True)
+
         path = path.replace("\\", "/")
+        openFilePath = openFilePath.replace("\\", "/")
 
-        namespaces = namespaceString.split(" ")
-        for namespace in namespaces :
-            print("Exporting " + namespace + " namespace")
+        mayabatch = "D:/Programes/Maya 2020/Maya2020/bin/mayabatch.exe"
+        mayaFile = "C:/Users/Simon/Desktop/temp.mb"
+        abcExportScript = "D:/Simon/Mes Documents/PROJECT/2020/WS2020_PythonForDCC/CrossDCC/script/mayaAbcExport.py"
 
-            searchString = namespace + ":*"
-            matchObjects = cmds.ls(searchString, transforms=True)
-
-            for matchObject in matchObjects :
-                exportName = matchObject.replace(namespace + ":", namespace + "_")
-                print("Exporting " + matchObject + " object")
-
-                if path[-1] == "\\" :
-                    abcCommand = "-frameRange 1 120 -uvWrite -dataFormat ogawa -root " + matchObject + " -file " + path + exportName + ".abc"
-                else:
-                    abcCommand = "-frameRange 1 120 -uvWrite -dataFormat ogawa -root " + matchObject + " -file " + path + "/" + exportName + ".abc"
-                
-                abcCommand = abcCommand + "\""
-
-                cmds.AbcExport(j=abcCommand)
+        mayaAbcExportQuery = "\"" + mayabatch + "\" -command \"python(\\\"execfile(\'" + abcExportScript + "\')\\\");\" \"" + path + "\" \"" + namespaceString + "\" -file \"" + mayaFile + "\""
+        print(mayaAbcExportQuery)
+        subprocess.Popen(mayaAbcExportQuery, shell=True)
