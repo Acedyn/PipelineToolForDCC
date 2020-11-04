@@ -123,7 +123,7 @@
     <item>
      <widget class="QLabel" name="exporLabel">
       <property name="text">
-       <string>Output file :</string>
+       <string>Output folder :</string>
       </property>
      </widget>
     </item>

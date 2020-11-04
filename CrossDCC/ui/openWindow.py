@@ -43,5 +43,5 @@ class OpenWindow(QtWidgets.QMainWindow):
         self.openPath.setText(fileName[0])
 
     def searchExport(self):
-        fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Export File", r"C:\Users\Simon\Documents")
-        self.exportPath.setText(fileName[0])
+        fileName = QtWidgets.QFileDialog.getExistingDirectory(self, "Export Folder", r"C:\Users\Simon\Documents")
+        self.exportPath.setText(fileName)
