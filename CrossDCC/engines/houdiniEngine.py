@@ -5,7 +5,7 @@ class HoudiniEngine(engine.Engine):
     def open(self, path):
         hou.hipFile.load(path)
 
-    def export(self, path, namespaceString):
+    def export(self, path, namespaceString, openFilePath):
         namespaces = namespaceString.split(" ")
         for namespace in namespaces :
             print("Exporting " + namespace)

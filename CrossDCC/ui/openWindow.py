@@ -34,8 +34,9 @@ class OpenWindow(QtWidgets.QMainWindow):
 
     def export(self):
         exportFilePath = self.exportPath.text()
+        openFilePath = self.openPath.text()
         namespaceString = self.exportNameSpaces.text()
-        self.engine.export(exportFilePath, namespaceString)
+        self.engine.export(exportFilePath, namespaceString, openFilePath)
 
     def searchOpen(self):
         fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Open File", r"C:\Users\Simon\Documents")

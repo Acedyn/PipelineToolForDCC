@@ -6,7 +6,7 @@ class MayaEngine(engine.Engine):
         cmds.file(path, o=True)
         print(path)
  
-    def export(self, path, namespaceString):
+    def export(self, path, namespaceString, openFilePath):
         path = "\"" + path
         path = path.replace("\\", "/")
 

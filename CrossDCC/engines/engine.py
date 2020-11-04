@@ -5,7 +5,7 @@ class Engine():
     def open(self, path):
         print("No DCC detected")
 
-    def export(self, path, namespaceString):
+    def export(self, path, namespaceString, openFilePath):
         print("No DCC detected")
     
     
