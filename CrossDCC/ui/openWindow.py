@@ -24,13 +24,23 @@ class OpenWindow(QtWidgets.QMainWindow):
         super(OpenWindow, self).__init__()
         QtCompat.loadUi(ui_path, self)    
         self.openButton.clicked.connect(self.open)
-        self.searchButton.clicked.connect(self.search)
+        self.exportButton.clicked.connect(self.export)
+        self.searchOpenButton.clicked.connect(self.searchOpen)
+        self.searchExportButton.clicked.connect(self.searchExport)
         
     def open(self):
+        openFilePath = self.openPath.text()
+        self.engine.open(openFilePath)
 
-        self.openFilePath = self.openPath.text()
-        self.engine.open(self.openFilePath)
+    def export(self):
+        exportFilePath = self.exportPath.text()
+        namespaceString = self.exportNameSpaces.text()
+        self.engine.export(exportFilePath, namespaceString)
 
-    def search(self):
+    def searchOpen(self):
         fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Open File", r"C:\Users\Simon\Documents")
         self.openPath.setText(fileName[0])
+
+    def searchExport(self):
+        fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Export File", r"C:\Users\Simon\Documents")
+        self.exportPath.setText(fileName[0])

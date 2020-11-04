@@ -4,25 +4,24 @@ sys.path.append(r"D:\Simon\Mes Documents\PROJECT\2020\WS2020_PythonForDCC\CrossD
 class Engine():
     def open(self, path):
         print("No DCC detected")
-        pass
-    
-    def save(self, path):
+
+    def export(self, path, namespaceString):
         print("No DCC detected")
-        pass
+    
     
 def getCurrentDCC():
 
     engine = Engine()
 
-    if "maya" in sys.executable:
+    if "maya" in sys.executable :
         import mayaEngine
         engine = mayaEngine.MayaEngine()
 
-    elif "houdini" in sys.executable:
+    elif "houdini" in sys.executable :
         import houdiniEngine
         engine = houdiniEngine.HoudiniEngine()
 
-    else:
+    else :
         import noEngine
         engine = noEngine.NoEngine()
     

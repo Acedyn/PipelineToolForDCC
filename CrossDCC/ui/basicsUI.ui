@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>form</class>
+ <widget class="QWidget" name="form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
      <x>9</x>
      <y>9</y>
      <width>139</width>
-     <height>261</height>
+     <height>267</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -100,18 +100,56 @@
      </layout>
     </item>
     <item>
+     <widget class="QLabel" name="openLabel">
+      <property name="text">
+       <string>Input file :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QLineEdit" name="openPath"/>
       </item>
       <item>
-       <widget class="QPushButton" name="searchButton">
+       <widget class="QPushButton" name="searchOpenButton">
         <property name="text">
          <string>...</string>
         </property>
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="exporLabel">
+      <property name="text">
+       <string>Output file :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="exportPath"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="searchExportButton">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="namespacesLabel">
+      <property name="text">
+       <string>Namespaces :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="exportNameSpaces"/>
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -123,12 +161,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="save">
+       <widget class="QPushButton" name="exportButton">
         <property name="text">
-         <string>Save</string>
+         <string>Export</string>
         </property>
        </widget>
       </item>
@@ -136,8 +171,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>layoutWidget</zorder>
-  <zorder>searchButton</zorder>
  </widget>
  <resources/>
  <connections/>
