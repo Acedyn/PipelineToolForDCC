@@ -8,11 +8,17 @@
 
 import os
 import sys
+import re
 
-sys.path.append(r"D:\Simon\Mes Documents\PROJECT\2020\WS2020_PythonForDCC\CrossDCC\utils")           #append QT lib
+dirname = os.path.dirname(__file__)
+reg = re.compile(r"\\[^\\]+$")
+dirname = reg.sub("", dirname)
+print(dirname)
+
+sys.path.append(dirname + r"\utils")           #append QT lib
 from Qt import QtWidgets, QtCompat
 
-ui_path = r"D:\Simon\Mes Documents\PROJECT\2020\WS2020_PythonForDCC\CrossDCC\ui\basicsUI.ui"
+ui_path = dirname + r"\ui\basicsUI.ui"
 
 from engines import engine as dcc
 
@@ -39,9 +45,9 @@ class OpenWindow(QtWidgets.QMainWindow):
         self.engine.export(exportFilePath, namespaceString, openFilePath)
 
     def searchOpen(self):
-        fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Open File", r"C:\Users\Simon\Documents")
+        fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Open File")
         self.openPath.setText(fileName[0])
 
     def searchExport(self):
-        fileName = QtWidgets.QFileDialog.getExistingDirectory(self, "Export Folder", r"C:\Users\Simon\Documents")
+        fileName = QtWidgets.QFileDialog.getExistingDirectory(self, "Export Folder")
         self.exportPath.setText(fileName)
