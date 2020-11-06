@@ -24,12 +24,9 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QPushButton" name="openButton">
       <property name="text">
-       <string>PIPELINE TOOL</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <string>Open</string>
       </property>
      </widget>
     </item>
@@ -43,10 +40,10 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QLineEdit" name="openFilePath"/>
+       <widget class="QLineEdit" name="openPath"/>
       </item>
       <item>
-       <widget class="QPushButton" name="searchOpenFileButton">
+       <widget class="QPushButton" name="searchOpenButton">
         <property name="text">
          <string>...</string>
         </property>
@@ -64,10 +61,10 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLineEdit" name="exportFolderPath"/>
+       <widget class="QLineEdit" name="exportPath"/>
       </item>
       <item>
-       <widget class="QPushButton" name="searchExportFolderButton">
+       <widget class="QPushButton" name="searchExportButton">
         <property name="text">
          <string>...</string>
         </property>

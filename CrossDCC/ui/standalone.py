@@ -1,23 +1,22 @@
-print("Loading pipeline tools")
-
 import re
 import os
 import sys
 
-dirname = os.path.dirname(__file__)
+# Get the path to the current file for relative path
+dirname = os.getcwd()
 reg = re.compile(r"\\[^\\]+$")
 dirname = reg.sub("", dirname)
-print(dirname)
+dirname = dirname.replace("\\", "/")
 
-sys.path.append(r"D:\Simon\Mes Documents\PROJECT\2020\WS2020_PythonForDCC\CrossDCC")        #append DCC lib
-sys.path.append(dirname + r"\utils")  #append QT lib
+# Import pipeline module
+sys.path.append(dirname)
 from Qt import QtWidgets, QtCompat
-
-print("Pipeline tools loaded")
-
 from ui import openWindow
 
+# Create the app (required only for stand alone)
 app = QtWidgets.QApplication(sys.argv)
+
+# Create window instance and show it
 win = openWindow.OpenWindow()
 win.show()
 app.exec_()

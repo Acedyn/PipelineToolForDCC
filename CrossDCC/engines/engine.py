@@ -2,12 +2,15 @@ import os
 import sys
 import re
 
-dirname = os.path.dirname(__file__)
+# Get the path to the current file for relative path
+dirname = os.getcwd()
 reg = re.compile(r"\\[^\\]+$")
 dirname = reg.sub("", dirname)
+dirname = dirname.replace("\\", "/")
 
 sys.path.append(dirname + r"\engines")
 
+# Interface class that all engine classes will inherit from
 class Engine():
     def open(self, path):
         print("No DCC detected")
@@ -19,6 +22,7 @@ class Engine():
         print("No DCC detected")
     
     
+# Get where python is launched from and set the good engine instance
 def getCurrentDCC():
 
     engine = Engine()

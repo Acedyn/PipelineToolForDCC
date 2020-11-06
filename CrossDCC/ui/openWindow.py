@@ -13,60 +13,79 @@ import os
 import sys
 import re
 
-dirname = os.path.dirname(__file__)
+# Get the path to the current file for relative path
+dirname = os.getcwd()
 reg = re.compile(r"\\[^\\]+$")
 dirname = reg.sub("", dirname)
+dirname = dirname.replace("\\", "/")
 
-sys.path.append(dirname + r"\utils")           #append QT lib
+# Import the QT lib
+sys.path.append(dirname)
 from Qt import QtWidgets, QtCompat
 
+# Path to the UI
 ui_path = dirname + r"\ui\basicsUI.ui"
 
+# Import the engine library containing the DCC related functions
 from engines import engine as dcc
+
 
 class OpenWindow(QtWidgets.QMainWindow):
     
+    # Set the engine according to where the tool is launched from
     engine = dcc.getCurrentDCC()
 
     def __init__(self):
         super(OpenWindow, self).__init__()
-        QtCompat.loadUi(ui_path, self)    
-        self.openButton.clicked.connect(self.open)
-        self.exportButton.clicked.connect(self.export)
+        QtCompat.loadUi(ui_path, self)
+
+        # Assign the buttons to functions
+        self.exportButton.clicked.connect(self.exportAbc)
         self.importButton.clicked.connect(self.importAbc)
-        self.searchOpenButton.clicked.connect(self.searchOpen)
-        self.searchExportButton.clicked.connect(self.searchExport)
+        self.searchOpenFileButton.clicked.connect(self.searchOpenFile)
+        self.searchExportFolderButton.clicked.connect(self.searchExportFolder)
         self.searchExportFileButton.clicked.connect(self.searchExportFile)
         self.searchOpenFolderButton.clicked.connect(self.searchOpenFolder)
         
+    # Open the file at openFilePath
     def open(self):
-        openFilePath = self.openPath.text()
+        openFilePath = self.openFilePath.text()
         self.engine.open(openFilePath)
 
-    def export(self):
-        exportFilePath = self.exportPath.text()
-        openFilePath = self.openPath.text()
+    # Export the objects matching the namespaces from the file in openFilePath to the folder at the openFilePath
+    def exportAbc(self):
+        # Get all the path
+        exportFilePath = self.exportFolderPath.text()
+        openFilePath = self.openFilePath.text()
         namespaceString = self.exportNameSpaces.text()
+        # Call the exportAbc function of the engine
         self.engine.export(exportFilePath, namespaceString, openFilePath)
         
+    # Import the .abc matching the namespaces from the folder in importFolderPath to the file at the openFolderPath
     def importAbc(self):
-        importFolderPath = self.openFolderPath.text()
-        destinationFilePath = self.exportFilePath.text()
+        # Get all the path
+        openFolderPath = self.openFolderPath.text()
+        exportFilePath = self.exportFilePath.text()
         namespaceString = self.exportNameSpaces.text()
-        self.engine.importAbc(importFolderPath, namespaceString, destinationFilePath)
+        # Call the importAbc function of the engine
+        self.engine.importAbc(openFolderPath, namespaceString, exportFilePath)
 
-    def searchOpen(self):
+    # Open a file dialog window to set openFilePath
+    def searchOpenFile(self):
         fileName = QtWidgets.QFileDialog.getOpenFileName(self, "Open File")
-        self.openPath.setText(fileName[0])
+        self.openFilePath.setText(fileName[0])
 
-    def searchExport(self):
+    # Open a folder dialog window to set exportFolderPath
+    def searchExportFolder(self):
         fileName = QtWidgets.QFileDialog.getExistingDirectory(self, "Export Folder")
-        self.exportPath.setText(fileName)
+        self.exportFolderPath.setText(fileName)
 
+    # Open a file dialog window to set exportFilePath
     def searchExportFile(self):
         filePath = QtWidgets.QFileDialog.getOpenFileName(self, "Output file")
         self.exportFilePath.setText(filePath[0])
         
+    # Open a folder dialog window to set openFolderPath
     def searchOpenFolder(self):
         folderPath = QtWidgets.QFileDialog.getExistingDirectory(self, "Input folder")
         self.openFolderPath.setText(folderPath)
