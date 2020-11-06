@@ -7,3 +7,7 @@
 - FOR HOUDINI add to houdini.env
     - HOUDINI_SCRIPT_PATH = "path/to/CrossDCC/engines/houdini/scripts;&"
     - HOUDINI_TOOLBAR_PATH = path/to/CrossDCC/engines/houdini/toolbar;&"
+
+### Who to use :
+- The tool can be launched from the pipline shelf in houdini or maya
+- It can also be launched in its standalone version from CrossDCC\ui\standalone.bat
