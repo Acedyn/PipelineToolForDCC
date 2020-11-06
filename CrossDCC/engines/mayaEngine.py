@@ -28,6 +28,4 @@ class MayaEngine(engine.Engine):
         subprocess.Popen(mayaAbcExportQuery, shell=True)
 
     def importAbc(self, importFolderPath, namespaceString, destinationFilePath):
-        print(importFolderPath)
-        print(namespaceString)
-        print(destinationFilePath)
+        print("Alembic import to houdini not supported yet")

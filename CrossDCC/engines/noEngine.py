@@ -3,8 +3,6 @@ import os
 import subprocess
 import os
 import re
-import time
-from pathlib import Path
 
 class NoEngine(engine.Engine):
     def open(self, path):
@@ -28,17 +26,15 @@ class NoEngine(engine.Engine):
         subprocess.Popen(mayaAbcExportQuery, shell=True)
 
     def importAbc(self, importFolderPath, namespaceString, destinationFilePath):
-
         dirname = os.path.dirname(__file__)
         reg = re.compile(r"\\[^\\]+$")
         dirname = reg.sub("", dirname)
         dirname = dirname.replace("\\", "/")
 
-        path = Path(destinationFilePath)
-        if not path.is_file():
+        if not os.path.isfile(destinationFilePath) :
             houdiniAbcInitQuery = "hython \"" + dirname + "/script/houdiniInitFile.py\" \"" + destinationFilePath + "\""
             print(houdiniAbcInitQuery)
-            subprocess.run(houdiniAbcInitQuery, shell=True)
+            subprocess.Popen(houdiniAbcInitQuery, shell=True).wait()
 
         houdiniAbcImportQuery = "hython \"" + destinationFilePath + "\" \"" + dirname + "/script/houdiniAbcImport.py\" \"" + importFolderPath + "\" \"" + namespaceString + "\""
         print(houdiniAbcImportQuery)
