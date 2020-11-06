@@ -16,7 +16,7 @@ namespaces = namespaceString.split(" ")
 for namespace in namespaces :
 
     # Find the object matching the namespace
-    searchString = namespace + "*"
+    searchString = namespace + ":*"
     matchObjects = cmds.ls(searchString, transforms=True)
 
     # For each objects that matches the namespace

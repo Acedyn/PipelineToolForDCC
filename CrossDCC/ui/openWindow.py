@@ -19,7 +19,7 @@ reg = re.compile(r"\\[^\\]+$")
 dirname = reg.sub("", dirname)
 dirname = dirname.replace("\\", "/")
 
-# Import the QT lib
+# Import pipeline module
 sys.path.append(dirname)
 from Qt import QtWidgets, QtCompat
 
