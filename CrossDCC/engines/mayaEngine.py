@@ -1,6 +1,8 @@
 import maya.cmds as cmds
 import engine
 import subprocess
+import os
+import re
 
 class MayaEngine(engine.Engine):
     def open(self, path):
@@ -14,9 +16,18 @@ class MayaEngine(engine.Engine):
         path = path.replace("\\", "/")
         openFilePath = openFilePath.replace("\\", "/")
 
-        mayabatch = "D:/Programes/Maya 2020/Maya2020/bin/mayabatch.exe"
-        abcExportScript = "D:/Simon/Mes Documents/PROJECT/2020/WS2020_PythonForDCC/CrossDCC/script/mayaAbcExport.py"
+        dirname = os.path.dirname(__file__)
+        reg = re.compile(r"\\[^\\]+$")
+        dirname = reg.sub("", dirname)
+        dirname = dirname.replace("\\", "/")
+        
+        abcExportScript = dirname + "/script/mayaAbcExport.py"
 
-        mayaAbcExportQuery = "\"" + mayabatch + "\" -command \"python(\\\"execfile(\'" + abcExportScript + "\')\\\");\" \"" + path + "\" \"" + namespaceString + "\" -file \"" + openFilePath + "\""
+        mayaAbcExportQuery = "mayabatch -command \"python(\\\"execfile(\'" + abcExportScript + "\')\\\");\" \"" + path + "\" \"" + namespaceString + "\" -file \"" + openFilePath + "\""
         print(mayaAbcExportQuery)
         subprocess.Popen(mayaAbcExportQuery, shell=True)
+
+    def importAbc(self, importFolderPath, namespaceString, destinationFilePath):
+        print(importFolderPath)
+        print(namespaceString)
+        print(destinationFilePath)

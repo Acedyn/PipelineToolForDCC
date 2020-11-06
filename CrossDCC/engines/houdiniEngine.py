@@ -11,3 +11,7 @@ class HoudiniEngine(engine.Engine):
             print("Exporting " + namespace)
         print("Alembic export from houdini not supported yet")
  
+    def importAbc(self, importFolderPath, namespaceString, destinationFilePath):
+        print(importFolderPath)
+        print(namespaceString)
+        print(destinationFilePath)
